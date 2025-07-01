@@ -80,6 +80,20 @@ npm run dev
 # ブラウザで http://localhost:5173 を開く
 ```
 
+### Docker での実行
+
+Docker がインストールされている場合、以下のコマンドでコンテナをビルドして実行できます。
+
+```bash
+# Dockerイメージをビルド
+docker build -t frixplayer .
+
+# コンテナを実行
+docker run -p 8080:80 frixplayer
+
+# ブラウザで http://localhost:8080 を開く
+```
+
 ### サンプル動画の配置
 
 1. `public` フォルダに動画ファイルを配置
