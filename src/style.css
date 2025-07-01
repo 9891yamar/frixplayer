@@ -1,0 +1,331 @@
+/* Netflix Player Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #141414;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    color: white;
+    overflow: hidden;
+}
+
+#player-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #141414;
+}
+
+#main-video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background-color: #000;
+}
+
+#main-video::-webkit-media-controls {
+    display: none !important;
+}
+
+#main-video::-webkit-media-controls-enclosure {
+    display: none !important;
+}
+
+#controls-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#player-container:hover #controls-container {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Control Buttons */
+#controls-container button {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 18px;
+    padding: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+}
+
+#controls-container button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+#controls-container button:active {
+    transform: scale(0.95);
+}
+
+#play-pause-btn {
+    font-size: 24px !important;
+    min-width: 50px !important;
+    min-height: 50px !important;
+}
+
+#rewind-btn,
+#fast-forward-btn {
+    position: relative;
+    font-size: 16px !important;
+}
+
+#rewind-btn span,
+#fast-forward-btn span {
+    position: absolute;
+    bottom: -8px;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+/* Progress Bar */
+#progress-container {
+    flex: 1;
+    margin: 0 15px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+#progress-bar {
+    flex: 1;
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+#progress-fill {
+    height: 100%;
+    background-color: #e50914;
+    border-radius: 3px;
+    width: 0%;
+    transition: width 0.1s ease;
+    position: relative;
+}
+
+#progress-fill::after {
+    content: "";
+    position: absolute;
+    right: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    background-color: #e50914;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+#progress-bar:hover #progress-fill::after {
+    opacity: 1;
+}
+
+#progress-bar:hover {
+    height: 8px;
+}
+
+#progress-bar:hover #progress-fill {
+    background-color: #f40612;
+}
+
+/* Time Display */
+#time-display {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: 12px;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    min-width: 85px;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+#current-time,
+#duration-time {
+    font-variant-numeric: tabular-nums;
+}
+
+.time-separator {
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 2px;
+}
+
+/* Volume Control */
+#volume-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#volume-container i {
+    font-size: 16px;
+    min-width: 20px;
+    cursor: pointer;
+}
+
+#volume-slider-container {
+    position: relative;
+    width: 80px;
+    height: 4px;
+}
+
+#volume-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: #e50914;
+    border-radius: 2px;
+    width: 50%; /* 初期値50%に対応 */
+    transition: width 0.1s ease;
+}
+
+#volume-control {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+#volume-control::-webkit-slider-track {
+    width: 100%;
+    height: 4px;
+    background: transparent;
+    border-radius: 2px;
+}
+
+#volume-control::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    background: #e50914;
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+#volume-control:hover::-webkit-slider-thumb {
+    opacity: 1;
+}
+
+#volume-control::-moz-range-track {
+    width: 100%;
+    height: 4px;
+    background: transparent;
+    border-radius: 2px;
+    border: none;
+}
+
+#volume-control::-moz-range-progress {
+    height: 4px;
+    background: transparent;
+    border-radius: 2px;
+}
+
+#volume-control::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    background: #e50914;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+#volume-control:hover::-moz-range-thumb {
+    opacity: 1;
+}
+
+/* Fullscreen Button */
+#fullscreen-btn {
+    font-size: 16px !important;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    #controls-container {
+        padding: 15px;
+        gap: 10px;
+    }
+
+    #controls-container button {
+        font-size: 16px;
+        padding: 10px;
+        min-width: 40px;
+        min-height: 40px;
+    }
+
+    #play-pause-btn {
+        font-size: 20px !important;
+        min-width: 44px !important;
+        min-height: 44px !important;
+    }
+
+    #volume-slider-container {
+        width: 60px;
+    }
+
+    #rewind-btn span,
+    #fast-forward-btn span {
+        font-size: 8px;
+    }
+
+    #time-display {
+        font-size: 12px;
+        min-width: 75px;
+        gap: 2px;
+    }
+
+    #progress-container {
+        gap: 8px;
+        margin: 0 10px;
+    }
+}
+
+/* Hide controls on mobile when not hovering */
+@media (hover: none) {
+    #controls-container {
+        opacity: 1;
+        visibility: visible;
+    }
+}

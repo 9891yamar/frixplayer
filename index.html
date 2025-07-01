@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Netflix Player</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
+    </head>
+    <body>
+        <div id="player-container">
+            <video id="main-video" width="800" height="450">
+                <source src="/sample.mp4" type="video/mp4" />
+                <source
+                    src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                    type="video/mp4"
+                />
+                お使いのブラウザはビデオタグをサポートしていません。
+            </video>
+
+            <div id="controls-container">
+                <button id="play-pause-btn">
+                    <i class="fas fa-play"></i>
+                </button>
+                <button id="rewind-btn">
+                    <i class="fas fa-backward"></i>
+                    <span>10s</span>
+                </button>
+                <button id="fast-forward-btn">
+                    <i class="fas fa-forward"></i>
+                    <span>10s</span>
+                </button>
+
+                <div id="progress-container">
+                    <div id="progress-bar">
+                        <div id="progress-fill"></div>
+                    </div>
+                    <div id="time-display">
+                        <span id="current-time">0:00</span>
+                        <span class="time-separator">/</span>
+                        <span id="duration-time">0:00</span>
+                    </div>
+                </div>
+
+                <div id="volume-container">
+                    <i class="fas fa-volume-up"></i>
+                    <div id="volume-slider-container">
+                        <div id="volume-progress"></div>
+                        <input
+                            type="range"
+                            id="volume-control"
+                            min="0"
+                            max="100"
+                            value="50"
+                        />
+                    </div>
+                </div>
+                <button id="fullscreen-btn">
+                    <i class="fas fa-expand"></i>
+                </button>
+            </div>
+        </div>
+
+        <script type="module" src="/src/main.ts"></script>
+    </body>
+</html>
